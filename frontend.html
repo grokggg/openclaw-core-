@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw AI 智能体协同平台</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a, #1e293b); color: #e2e8f0; min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; padding: 2rem 1rem; border-bottom: 1px solid #334155; margin-bottom: 2rem; }
+        h1 { font-size: 2.8rem; background: linear-gradient(90deg, #60a5fa, #a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.5rem; }
+        .tagline { font-size: 1.1rem; color: #94a3b8; margin-bottom: 1.5rem; }
+        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 1.5rem; border: 1px solid #475569; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+        .card h2 { color: #cbd5e1; font-size: 1.3rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #475569; display: flex; align-items: center; gap: 0.5rem; }
+        .status-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .status-item { background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 10px; }
+        .status-item .label { font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.3rem; }
+        .status-item .value { font-size: 1.4rem; font-weight: bold; }
+        .status-item .value.healthy { color: #4ade80; }
+        .status-item .value.running { color: #60a5fa; }
+        .status-item .value.stopped { color: #f87171; }
+        .btn { background: linear-gradient(90deg, #3b82f6, #8b5cf6); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4); }
+        .btn:disabled { background: #475569; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn.secondary { background: #475569; }
+        .workflow-option { background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 10px; margin-bottom: 1rem; }
+        .workflow-option h4 { color: #cbd5e1; margin-bottom: 0.5rem; }
+        .workflow-option p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .log-container { background: rgba(15, 23, 42, 0.9); border-radius: 10px; padding: 1rem; height: 300px; overflow-y: auto; font-family: 'Monaco', 'Courier New', monospace; font-size: 0.85rem; line-height: 1.4; }
+        .log-entry { margin-bottom: 0.5rem; white-space: pre-wrap; word-break: break-word; }
+        .log-entry.info { color: #d1d5db; }
+        .log-entry.success { color: #4ade80; }
+        .log-entry.warning { color: #fbbf24; }
+        .log-entry.error { color: #f87171; }
+        .log-entry.event { color: #60a5fa; }
+        .agent-list { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .agent-tag { background: rgba(96, 165, 250, 0.2); border: 1px solid #3b82f6; color: #bfdbfe; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-robot"></i> OpenClaw Core</h1>
+            <p class="tagline">企业级 AI 智能体协同工作流平台</p>
+            <p>6 大专业智能体待命，全自动处理产品发布、内容营销等复杂业务流程。</p>
+        </header>
+
+        <main class="dashboard">
+            <section class="card">
+                <h2><i class="fas fa-heart-pulse"></i> 系统状态</h2>
+                <div class="status-grid" id="systemStatus">
+                    <!-- 动态填充 -->
+                    <div class="status-item">
+                        <div class="label">服务器健康</div>
+                        <div class="value healthy" id="healthStatus">检查中...</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">事件引擎</div>
+                        <div class="value" id="eventEngineStatus">检查中...</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">智能体管理器</div>
+                        <div class="value" id="agentManagerStatus">检查中...</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">活跃工作流</div>
+                        <div class="value" id="activeWorkflows">0</div>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <button class="btn" onclick="checkSystemHealth()"><i class="fas fa-sync-alt"></i> 刷新状态</button>
+                    <button class="btn secondary" onclick="toggleLogs()"><i class="fas fa-terminal"></i> 显示/隐藏日志</button>
+                </div>
+            </section>
+            <section class="card">
+                <h2><i class="fas fa-play-circle"></i> 启动工作流</h2>
+                <p style="color: #94a3b8; margin-bottom: 1rem;">选择模板，一键启动智能体协同流程。</p>
+                
+                <div class="workflow-option">
+                    <h4><i class="fas fa-rocket"></i> 产品发布 (Product Launch)</h4>
+                    <p>完整的 GTM 策略，6 个智能体参与：市场分析、竞争研究、内容创作、发布规划、质量审查。</p>
+                    <button class="btn" onclick="startWorkflow('product_launch')" id="btnProductLaunch">
+                        <i class="fas fa-play"></i> 启动产品发布
+                    </button>
+                </div>
+
+                <div class="workflow-option">
+                    <h4><i class="fas fa-bullhorn"></i> 内容营销战役 (Content Campaign)</h4>
+                    <p>内容营销全流程，4 个智能体参与：主题研究、内容创作、质量审查、多渠道分发。</p>
+                    <button class="btn" onclick="startWorkflow('content_campaign')" id="btnContentCampaign">
+                        <i class="fas fa-play"></i> 启动内容营销
+                    </button>
+                </div>
+
+                <div style="margin-top: 1rem;">
+                    <button class="btn secondary" onclick="fetchActiveSessions()">
+                        <i class="fas fa-list"></i> 查看活跃会话
+                    </button>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2><i class="fas fa-users-gear"></i> 智能体团队</h2>
+                <p style="color: #94a3b8; margin-bottom: 1rem;">您的 6 位专业 AI 同事当前状态</p>
+                <div class="agent-list" id="agentList">
+                    <!-- 动态填充 -->
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <h3><i class="fas fa-wave-square"></i> 系统负载</h3>
+                    <div style="background: rgba(255,255,255,0.1); height: 20px; border-radius: 10px; margin-top: 0.5rem; overflow: hidden;">
+                        <div id="systemLoadBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #4ade80, #3b82f6); border-radius: 10px; transition: width 0.5s;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #94a3b8; margin-top: 0.3rem;">
+                        <span>0%</span>
+                        <span id="loadText">0% 利用率</span>
+                        <span>100%</span>
+                    </div>
+                </div>
+            </section>
+            <section class="card" id="logSection" style="display: none; grid-column: 1 / -1;">
+                <h2><i class="fas fa-terminal"></i> 实时系统日志</h2>
+                <div class="log-container" id="logContainer">
+                    <!-- 日志将动态添加到这里 -->
+                    <div class="log-entry info">[系统] 前端界面已加载。等待连接后端服务器...</div>
+                </div>
+                <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                    <button class="btn secondary" onclick="clearLogs()"><i class="fas fa-broom"></i> 清空日志</button>
+                    <button class="btn secondary" onclick="fetchRecentLogs()"><i class="fas fa-download"></i> 获取服务器日志</button>
+                </div>
+            </section>
+        </main>
+
+        <footer style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #334155; color: #94a3b8; font-size: 0.9rem;">
+            <p>OpenClaw Core Engine v1.0 • 企业级 AI 智能体协同平台</p>
+            <p style="margin-top: 0.5rem;">当前实例运行于: <code id="serverUrl">当前服务</code></p>
+        </footer>
+    </div>
+
+    <script>
+        // 基础配置
+        const API_BASE = '';
+        let autoRefreshInterval = null;
+        const logContainer = document.getElementById('logContainer');
+        
+        // 工具函数：添加日志
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            const timestamp = new Date().toLocaleTimeString('zh-CN', {hour12: false});
+            entry.textContent = `[${timestamp}] ${message}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight; // 自动滚动到底部
+        }
+        
+        // 工具函数：显示/隐藏日志面板
+        function toggleLogs() {
+            const logSection = document.getElementById('logSection');
+            if (logSection.style.display === 'none') {
+                logSection.style.display = 'block';
+                addLog('[前端] 实时日志面板已打开。', 'info');
+            } else {
+                logSection.style.display = 'none';
+            }
+        }
+        
+        // 工具函数：清空日志
+        function clearLogs() {
+            logContainer.innerHTML = '';
+            addLog('[前端] 日志已清空。', 'info');
+        }
+        
+        // 工具函数：获取服务器日志（模拟）
+        function fetchRecentLogs() {
+            addLog('[前端] 正在获取服务器日志...', 'info');
+            // 在实际应用中，这里可以调用一个后端API来获取最近的服务器日志文件内容
+            setTimeout(() => {
+                addLog('[服务器] 这是一条模拟的服务器日志条目。', 'event');
+                addLog('[系统] 心跳事件已处理。', 'info');
+            }, 300);
+        }
+        // 核心业务函数
+        async function checkSystemHealth() {
+            addLog('[请求] 检查系统健康状态...', 'info');
+            disableButtons(true);
+            try {
+                // 1. 健康检查
+                const healthRes = await fetch(`${API_BASE}/health`);
+                const healthData = await healthRes.json();
+                const isHealthy = healthRes.ok && healthData.status === 'healthy';
+                document.getElementById('healthStatus').textContent = isHealthy ? '健康' : '异常';
+                document.getElementById('healthStatus').className = `value ${isHealthy ? 'healthy' : 'stopped'}`;
+                
+                if (isHealthy) {
+                    addLog(`[系统] 健康检查通过: ${healthData.status}`, 'success');
+                } else {
+                    addLog(`[系统] 健康检查异常: ${JSON.stringify(healthData)}`, 'error');
+                }
+                
+                // 2. 引擎状态检查
+                const statusRes = await fetch(`${API_BASE}/api/engine/status`);
+                if (statusRes.ok) {
+                    const statusData = await statusRes.json();
+                    const eventEngine = statusData.data?.components?.eventEngine || 'unknown';
+                    const agentManager = statusData.data?.components?.agentManager || 'unknown';
+                    const systemLoad = statusData.data?.systemLoad || {};
+                    
+                    document.getElementById('eventEngineStatus').textContent = eventEngine === 'running' ? '运行中' : '已停止';
+                    document.getElementById('eventEngineStatus').className = `value ${eventEngine === 'running' ? 'running' : 'stopped'}`;
+                    
+                    document.getElementById('agentManagerStatus').textContent = agentManager === 'running' ? '运行中' : '已停止';
+                    document.getElementById('agentManagerStatus').className = `value ${agentManager === 'running' ? 'running' : 'stopped'}`;
+                    
+                    // 更新系统负载
+                    const loadPercent = systemLoad.utilization || 0;
+                    document.getElementById('systemLoadBar').style.width = `${loadPercent}%`;
+                    document.getElementById('loadText').textContent = `${loadPercent}% 利用率`;
+                    // 更新智能体列表
+                    updateAgentList(statusData.data?.agents || []);
+                    
+                    addLog(`[系统] 状态更新: 事件引擎(${eventEngine}), 智能体管理器(${agentManager}), 负载(${loadPercent}%)`, 'success');
+                }
+                
+                // 3. 检查活跃工作流会话
+                await fetchActiveSessions();
+                
+            } catch (error) {
+                addLog(`[错误] 获取系统状态失败: ${error.message}`, 'error');
+                document.getElementById('healthStatus').textContent = '连接失败';
+                document.getElementById('healthStatus').className = 'value stopped';
+            } finally {
+                disableButtons(false);
+            }
+        }
+        
+        function updateAgentList(agents) {
+            const container = document.getElementById('agentList');
+            container.innerHTML = '';
+            const agentConfig = {
+                'minion': {name: 'CEO幕僚长', color: '#8b5cf6'},
+                'sage': {name: '研究主管', color: '#10b981'},
+                'scout': {name: '增长主管', color: '#f59e0b'},
+                'quill': {name: '创意总监', color: '#3b82f6'},
+                'xalt': {name: '社交媒体总监', color: '#ec4899'},
+                'observer': {name: '质量检查', color: '#6b7280'}
+            };
+            
+            agents.forEach(agent => {
+                const tag = document.createElement('div');
+                tag.className = 'agent-tag';
+                tag.style.borderColor = agentConfig[agent.id]?.color || '#475569';
+                tag.style.background = `${agentConfig[agent.id]?.color}20`;
+                tag.innerHTML = `<i class="fas fa-${agent.status === 'busy' ? 'gear fa-spin' : 'user'}"></i> ${agentConfig[agent.id]?.name || agent.id}`;
+                container.appendChild(tag);
+            });
+        }
+        
+        async function fetchActiveSessions() {
+            addLog('[请求] 获取活跃工作流会话...', 'info');
+            try {
+                const res = await fetch(`${API_BASE}/api/orchestrator/sessions`);
+                if (res.ok) {
+                    const data = await res.json();
+                    const count = data.data?.count || 0;
+                    document.getElementById('activeWorkflows').textContent = count;
+                    addLog(`[系统] 当前活跃会话: ${count} 个`, 'success');
+                    if (count > 0) {
+                        data.data.sessions.forEach(session => {
+                            addLog(`[会话] ${session.id} - ${session.type} (${session.status})`, 'event');
+                        });
+                    }
+                }
+            } catch (error) {
+                addLog(`[错误] 获取会话失败: ${error.message}`, 'error');
+            }
+        }
+        async function startWorkflow(workflowType) {
+            const buttonId = workflowType === 'product_launch' ? 'btnProductLaunch' : 'btnContentCampaign';
+            const button = document.getElementById(buttonId);
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 启动中...';
+            button.disabled = true;
+            
+            addLog(`[请求] 启动工作流: ${workflowType}`, 'info');
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/orchestrator/sessions/start`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        workflowType: workflowType,
+                        data: { productName: "来自前端界面的测试任务" }
+                    })
+                });
+                
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    addLog(`[成功] 工作流启动成功! 会话ID: ${data.data.sessionId}`, 'success');
+                    // 短暂延迟后刷新状态
+                    setTimeout(() => {
+                        checkSystemHealth();
+                        fetchActiveSessions();
+                    }, 1500);
+                } else {
+                    addLog(`[错误] 启动失败: ${data.error || '未知错误'}`, 'error');
+                }
+            } catch (error) {
+                addLog(`[错误] 请求失败: ${error.message}`, 'error');
+            } finally {
+                // 恢复按钮状态
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+            }
+        }
+        
+        function disableButtons(disable) {
+            document.querySelectorAll('.btn').forEach(btn => {
+                if (!btn.id.includes('btn')) return; // 只禁用工作流启动按钮
+                btn.disabled = disable;
+            });
+        }
+        
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            addLog('[前端] 界面初始化完成。', 'info');
+            document.getElementById('serverUrl').textContent = window.location.origin;
+            // 初始检查
+            checkSystemHealth();
+            // 可选：设置自动刷新
+            // autoRefreshInterval = setInterval(checkSystemHealth, 30000); // 每30秒刷新
+        });
+        
+        // 清理自动刷新
+        window.addEventListener('beforeunload', function() {
+            if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS ops_agent_tasks ( id TEXT PRIMARY KEY, agent_id TEXT NOT NULL, type TEXT NOT NULL, data JSONB DEFAULT '{}', priority INTEGER DEFAULT 1, status TEXT DEFAULT 'pending', result JSONB, assigned_at TIMESTAMPTZ, started_at TIMESTAMPTZ, completed_at TIMESTAMPTZ, created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW());
+CREATE INDEX IF NOT EXISTS idx_agent_tasks_agent_id ON ops_agent_tasks(agent_id);
+CREATE INDEX IF NOT EXISTS idx_agent_tasks_status ON ops_agent_tasks(status);
+CREATE INDEX IF NOT EXISTS idx_agent_tasks_type ON ops_agent_tasks(type);
+CREATE INDEX IF NOT EXISTS idx_agent_tasks_created_at ON ops_agent_tasks(created_at);
+CREATE OR REPLACE FUNCTION update_updated_at_column() RETURNS TRIGGER AS $$ BEGIN NEW.updated_at = NOW(); RETURN NEW; END; $$ language 'plpgsql';
+CREATE TRIGGER update_agent_tasks_updated_at BEFORE UPDATE ON ops_agent_tasks FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TABLE IF NOT EXISTS ops_reaction_matrix ( id SERIAL PRIMARY KEY, event_type TEXT NOT NULL, agent_ids TEXT[] NOT NULL, priority INTEGER DEFAULT 1, conditions JSONB DEFAULT '{}', enabled BOOLEAN DEFAULT true, created_at TIMESTAMPTZ DEFAULT NOW());
+INSERT INTO ops_reaction_matrix (event_type, agent_ids, priority) VALUES ('proposal.created', ARRAY['minion', 'sage'], 1), ('mission.created', ARRAY['minion', 'scout'], 2), ('content.needed', ARRAY['quill'], 3), ('social.publish', ARRAY['xalt'], 3), ('quality.check', ARRAY['observer'], 2), ('error.occurred', ARRAY['observer', 'minion'], 1), ('system.alert', ARRAY['minion', 'observer', 'sage'], 1) ON CONFLICT DO NOTHING;
+CREATE TABLE IF NOT EXISTS ops_events ( id SERIAL PRIMARY KEY, event_id TEXT NOT NULL, type TEXT NOT NULL, data JSONB DEFAULT '{}', status TEXT NOT NULL, error TEXT, source TEXT, processing_time INTEGER, timestamp TIMESTAMPTZ DEFAULT NOW());
+CREATE INDEX IF NOT EXISTS idx_ops_events_event_id ON ops_events(event_id);
+CREATE INDEX IF NOT EXISTS idx_ops_events_type ON ops_events(type);
+CREATE INDEX IF NOT EXISTS idx_ops_events_timestamp ON ops_events(timestamp);
