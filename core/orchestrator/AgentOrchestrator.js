@@ -1,3 +1,5 @@
+const { commitArtifact } = require("../../services/githubService");
+const { commitArtifact } = require("../../services/githubService");
 const EventEmitter = require('events');
 
 class AgentOrchestrator extends EventEmitter {

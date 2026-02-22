@@ -1,0 +1,15 @@
+const express = require('express');
+const app = express();
+
+// 根路径
+app.get('/', (req, res) => res.send('🎯 OpenClaw AI v2.0 运行正常!'));
+
+// 健康检查
+app.get('/health', (req, res) => res.json({status: 'healthy'}));
+
+// API文档
+app.get('/api/v1', (req, res) => res.json({version: '2.0.0'}));
+
+// 启动
+const PORT = 3002;
+app.listen(PORT, () => console.log(\`🚀 服务器运行在 http://localhost:\${PORT}\`));

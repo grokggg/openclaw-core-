@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenClaw AI 智能体协同平台</title>
+    <style>
+        /* 只保留CSS，移除可能出错的JS */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:sans-serif; background:#f0f2f5; }
+        .container { max-width:1200px; margin:0 auto; padding:20px; }
+        header { background:white; padding:20px; border-radius:10px; margin-bottom:20px; }
+        .card { background:white; padding:20px; border-radius:10px; margin-bottom:20px; }
+        .btn { background:#3b82f6; color:white; padding:10px 15px; border:none; border-radius:5px; cursor:pointer; margin:5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header><h1>OpenClaw AI 智能体协同平台</h1></header>
+        
+        <div class="card">
+            <h2>智能体状态</h2>
+            <div id="agentStatus">idunfindend - 检查中...</div>
+        </div>
+        
+        <div class="card">
+            <h2>工作流控制</h2>
+            <button class="btn" onclick="startWorkflow('product_launch')">🚀 启动产品发布</button>
+            <button class="btn" onclick="getSessions()">📊 查看活跃会话</button>
+        </div>
+        
+        <div class="card">
+            <h2>系统日志</h2>
+            <div id="logPanel" style="height:200px; overflow:auto; background:#f8f9fa; padding:10px; border-radius:5px;">
+                [系统] 初始化完成...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 最简化的功能代码
+        const API_BASE = '';
+        const logPanel = document.getElementById('logPanel');
+        
+        function addLog(msg) {
+            const p = document.createElement('div');
+            p.innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            logPanel.appendChild(p);
+            logPanel.scrollTop = logPanel.scrollHeight;
+        }
+        
+        function startWorkflow(type) {
+            addLog(`启动 ${type} 工作流...`);
+            fetch(API_BASE + '/health')
+                .then(r => r.json())
+                .then(d => {
+                    addLog('✅ 系统健康: ' + d.status);
+                })
+                .catch(e => addLog('❌ 错误: ' + e));
+        }
+        
+        function getSessions() {
+            addLog('获取会话...');
+            fetch(API_BASE + '/api/orchestrator/sessions')
+                .then(r => r.json())
+                .then(d => {
+                    addLog('会话数: ' + (d.count || '未知'));
+                })
+                .catch(e => addLog('错误: ' + e));
+        }
+        
+        addLog('页面加载完成');
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><title>OpenClaw</title><style>body{font-family:sans-serif;padding:20px;}.btn{background:#3b82f6;color:white;padding:10px;border:none;border-radius:5px;margin:5px;}.log{background:#f1f5f9;padding:10px;margin-top:20px;border-radius:5px;height:200px;overflow:auto;}</style></head>
+<body><h1>OpenClaw 恢复版</h1>
+<button class="btn" onclick="test()">测试健康</button>
+<button class="btn" onclick="start()">启动工作流</button>
+<div id="log" class="log"></div>
+<script>
+const log=document.getElementById('log');
+function add(m){const p=document.createElement('p');p.textContent=m;log.appendChild(p);log.scrollTop=log.scrollHeight;}
+function test(){add('测试中...');fetch('/health').then(r=>r.json()).then(d=>add('健康: '+d.status));}
+function start(){add('启动中...');fetch('/api/orchestrator/sessions/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({workflowType:'product_launch'})}).then(r=>r.json()).then(d=>add('启动: '+JSON.stringify(d)));}
+add('页面加载完成');
+</script></body></html>

@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>点击测试</h3>
+<button onclick="fetch('/health').then(r=>r.json()).then(d=>alert(d.status))">测试API</button>
+<p>如果点击有弹窗，则JS和API正常。</p>
+<script>console.log('测试页加载OK');</script>
+</body>
+</html>

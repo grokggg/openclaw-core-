@@ -1,0 +1,315 @@
+nohup: ignoring input
+🎵 智能体协同编排器初始化完成
+🎵 协同编排器已自动初始化（演示模式）
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address alr🚀 启动智能体协同会话: session_1771499270240_xyvcv08t9 (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771499270240_xyvcv08t9
+🚀 启动智能体协同会话: session_1771499619342_d155gbuqp (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771499619342_d155gbuqp
+🚀 启动智能体协同会话: session_1771499791975_1yq9pog98 (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771499791975_1yq9pog98
+🚀 启动智能体协同会话: session_1771499917691_rcxu12xwn (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771499917691_rcxu12xwn
+🚀 启动智能体协同会话: session_1771500679583_pgrtyvpv5 (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771500679583_pgrtyvpv5
+🚀 启动智能体协同会话: session_1771501380320_0wy3nc7i7 (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+🚀 启动智能体协同会话: session_1771501380443_6cta6qdff (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+🚀 启动智能体协同会话: session_1771501380694_esz8x881r (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+⏭️  触发下一步: sage 将执行 analyze_market
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+⏭️  触发下一步: scout 将执行 competitive_analysis
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+⏭️  触发下一步: quill 将执行 create_content
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+⏭️  触发下一步: xalt 将执行 plan_distribution
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+⏭️  触发下一步: observer 将执行 quality_assurance
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771501380320_0wy3nc7i7
+✅ 协同会话完成: session_1771501380443_6cta6qdff
+✅ 协同会话完成: session_1771501380694_esz8x881r
+🚀 启动智能体协同会话: session_1771501783084_lukoj69ct (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771501783084_lukoj69ct
+🚀 启动智能体协同会话: session_1771502027387_6rbt8bmo6 (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771502027387_6rbt8bmo6
+🚀 启动智能体协同会话: session_1771502237448_xv07brdgd (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+🚀 启动智能体协同会话: session_1771502237538_ia3x86snu (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771502237448_xv07brdgd
+✅ 协同会话完成: session_1771502237538_ia3x86snu
+🚀 启动智能体协同会话: session_1771502990946_ms8jj1r2o (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771502990946_ms8jj1r2o
+🚀 启动智能体协同会话: session_1771503036032_uehj1ey7c (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771503036032_uehj1ey7c
+🚀 启动智能体协同会话: session_1771503357563_2vllird2r (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771503357563_2vllird2r
+🚀 启动智能体协同会话: session_1771503402255_vjplc2k8x (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771503402255_vjplc2k8x
+🚀 启动智能体协同会话: session_1771503566507_1b79e6pbv (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771503566507_1b79e6pbv
+🚀 启动智能体协同会话: session_1771503609375_30cb5w4hm (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🚀 启动智能体协同会话: session_1771503622638_ifk0nvcrp (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+🔄 协同步骤 6: observer 执行 quality_assurance
+⏭️  触发下一步: sage 将执行 analyze_market
+✅ 协同会话完成: session_1771503609375_30cb5w4hm
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771503622638_ifk0nvcrp
+🚀 启动智能体协同会话: session_1771503708701_85ke1upqv (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771503708701_85ke1upqv
+🚀 启动智能体协同会话: session_1771503979019_enk3402xk (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771503979019_enk3402xk
+🚀 启动智能体协同会话: session_1771505632757_5ebabrwfs (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771505632757_5ebabrwfs
+🚀 启动智能体协同会话: session_1771508830184_58zabkewv (product_launch)
+🔄 协同步骤 1: minion 执行 strategize
+⏭️  触发下一步: sage 将执行 analyze_market
+🔄 协同步骤 2: sage 执行 analyze_market
+⏭️  触发下一步: scout 将执行 competitive_analysis
+🔄 协同步骤 3: scout 执行 competitive_analysis
+⏭️  触发下一步: quill 将执行 create_content
+🔄 协同步骤 4: quill 执行 create_content
+⏭️  触发下一步: xalt 将执行 plan_distribution
+🔄 协同步骤 5: xalt 执行 plan_distribution
+⏭️  触发下一步: observer 将执行 quality_assurance
+🚀 启动智能体协同会话: session_1771508843519_tw1h1qdck (content_campaign)
+🔄 协同步骤 1: sage 执行 topic_research
+⏭️  触发下一步: quill 将执行 content_creation
+🔄 协同步骤 6: observer 执行 quality_assurance
+✅ 协同会话完成: session_1771508830184_58zabkewv
+🔄 协同步骤 2: quill 执行 content_creation
+⏭️  触发下一步: observer 将执行 quality_review
+🔄 协同步骤 3: observer 执行 quality_review
+⏭️  触发下一步: xalt 将执行 multi_channel_distribute
+🔄 协同步骤 4: xalt 执行 multi_channel_distribute
+✅ 协同会话完成: session_1771508843519_tw1h1qdck

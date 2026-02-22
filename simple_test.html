@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenClaw 极简测试</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family:Arial; margin:20px; }
+        h1 { color:#2563eb; }
+        button { 
+            background:#3b82f6; 
+            color:white; 
+            border:none; 
+            padding:12px 24px; 
+            border-radius:8px; 
+            font-size:16px; 
+            margin:10px; 
+            cursor:pointer; 
+        }
+        button:hover { background:#2563eb; }
+        .result { margin:20px; padding:15px; border-left:4px solid #3b82f6; background:#f1f5f9; }
+    </style>
+</head>
+<body>
+    <h1>🔄 OpenClaw 功能测试</h1>
+    
+    <div>
+        <h3>1. 测试健康检查</h3>
+        <button onclick="testHealth()">测试健康</button>
+    </div>
+    
+    <div>
+        <h3>2. 启动工作流</h3>
+        <button onclick="startWorkflow()">启动工作流</button>
+    </div>
+    
+    <div id="result" class="result">
+        测试结果将显示在这里...
+    </div>
+    
+    <script>
+        // 显示结果
+        function showResult(message, isError = false) {
+            const resultDiv = document.getElementById('result');
+            const time = new Date().toLocaleTimeString();
+            resultDiv.innerHTML = `<strong>[${time}]</strong> ${message}`;
+            resultDiv.style.borderLeftColor = isError ? '#ef4444' : '#10b981';
+        }
+        
+        // 测试健康检查
+        async function testHealth() {
+            showResult('正在检查服务器健康...');
+            try {
+                const response = await fetch('/health');
+                const data = await response.json();
+                showResult(`✅ 服务器健康: ${JSON.stringify(data)}`);
+            } catch (error) {
+                showResult(`❌ 连接失败: ${error.message}`, true);
+            }
+        }
+        
+        // 启动工作流
+        async function startWorkflow() {
+            showResult('正在启动工作流...');
+            try {
+                const response = await fetch('/api/orchestrator/sessions/start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ workflowType: 'test' })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    const sessionId = data.data?.sessionId || '未提供ID';
+                    showResult(`✅ 工作流启动成功! Session ID: ${sessionId}`);
+                } else {
+                    showResult(`❌ 服务器返回错误: ${data.error || '未知错误'}`, true);
+                }
+            } catch (error) {
+                showResult(`❌ 请求失败: ${error.message}`, true);
+            }
+        }
+        
+        // 页面加载时自动测试一次
+        window.onload = function() {
+            showResult('页面加载完成，点击按钮测试功能');
+        };
+    </script>
+</body>
+</html>

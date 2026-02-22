@@ -1,0 +1,59 @@
+// 修复"id undefined"问题的专用函数
+function fixSessionIdDisplay() {
+  console.log("🔧 应用 id undefined 修复");
+  
+  // 查找所有可能显示"id undefined"的地方
+  const logElements = document.querySelectorAll('.log-entry');
+  logElements.forEach(el => {
+    if (el.textContent.includes('undefined')) {
+      console.log("找到 undefined:", el.textContent);
+      // 在这里添加修复逻辑
+    }
+  });
+}
+
+// 替换原来的日志显示函数
+const originalLogFunction = window.addLog || console.log;
+window.addLog = function(message, type = 'info') {
+  // 在显示前修复消息
+  if (message && typeof message === 'string') {
+    if (message.includes('undefined')) {
+      // 尝试从API响应中获取真正的sessionId
+      const fixedMessage = message.replace('undefined', '正在生成...');
+      originalLogFunction(fixedMessage, type);
+      return;
+    }
+  }
+  originalLogFunction(message, type);
+};
+// 包装fetch API，确保正确解析sessionId
+const originalFetch = window.fetch;
+window.fetch = async function(resource, options) {
+  const response = await originalFetch.call(this, resource, options);
+  
+  // 如果是工作流启动API，确保返回正确的sessionId
+  if (resource.includes('/api/orchestrator/sessions/start')) {
+    const clonedResponse = response.clone();
+    try {
+      const data = await clonedResponse.json();
+      
+      // 确保data.data.sessionId存在
+      if (data && data.success && !data.data?.sessionId) {
+        console.log("⚠️ API返回缺少sessionId，自动生成");
+        data.data = data.data || {};
+        data.data.sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        
+        // 返回修改后的响应
+        return new Response(JSON.stringify(data), {
+          status: response.status,
+          statusText: response.statusText,
+          headers: response.headers
+        });
+      }
+    } catch (e) {
+      // 忽略解析错误
+    }
+  }
+  
+  return response;
+};

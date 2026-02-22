@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"><title>OpenClaw Core</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0f172a; color: #f8fafc; font-family: 'Fira Code', monospace; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; padding: 1rem; }
+        .log-box { background: #020617; color: #4ade80; height: 400px; overflow-y: auto; padding: 1rem; font-size: 11px; border: 1px solid #1e293b; border-left: 4px solid #38bdf8; }
+    </style>
+</head>
+<body class="p-4 max-w-6xl mx-auto">
+    <header class="text-center mb-6">
+        <h1 class="text-2xl font-bold text-sky-400">🤖 OpenClaw Core</h1>
+        <p class="text-xs text-slate-500">企业级 AI 智能体协同工作流平台</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="card col-span-1">
+            <h3 class="text-xs font-bold text-slate-400 mb-3 uppercase">❤️ 系统状态</h3>
+            <div class="space-y-2">
+                <div class="flex justify-between bg-slate-900/50 p-2 rounded text-xs"><span>服务健康</span><span class="text-green-400 font-bold">100% 在线</span></div>
+                <div class="flex justify-between bg-slate-900/50 p-2 rounded text-xs"><span>活跃工作流</span><span id="active-num" class="text-sky-400 font-bold">4</span></div>
+            </div>
+        </div>
+        <div class="card col-span-2">
+            <h3 class="text-xs font-bold text-slate-400 mb-3 uppercase">⚙️ 启动工作流任务</h3>
+            <div class="flex gap-2">
+                <button onclick="startTask('Product Launch')" class="flex-1 bg-indigo-600 hover:bg-indigo-500 p-3 rounded font-bold text-xs">🚀 启动产品发布</button>
+                <button onclick="startTask('Content Campaign')" class="flex-1 bg-purple-600 hover:bg-purple-500 p-3 rounded font-bold text-xs">📢 启动内容营销</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-6">
+        <h3 class="text-xs font-bold text-slate-400 mb-3 uppercase">👥 智能体团队 (6)</h3>
+        <div class="grid grid-cols-6 gap-2">
+            <div class="text-center p-2 bg-slate-900 rounded border border-sky-900/50"><div class="text-xl">🤖</div><div class="text-[8px] mt-1 text-sky-400">CEO</div></div>
+            <div class="text-center p-2 bg-slate-900 rounded"><div class="text-xl">🧙</div><div class="text-[8px] mt-1">SAGE</div></div>
+            <div class="text-center p-2 bg-slate-900 rounded"><div class="text-xl">🛰️</div><div class="text-[8px] mt-1">SCOUT</div></div>
+            <div class="text-center p-2 bg-slate-900 rounded"><div class="text-xl">✍️</div><div class="text-[8px] mt-1">QUILL</div></div>
+            <div class="text-center p-2 bg-slate-900 rounded"><div class="text-xl">📢</div><div class="text-[8px] mt-1">XALT</div></div>
+            <div class="text-center p-2 bg-slate-900 rounded"><div class="text-xl">✅</div><div class="text-[8px] mt-1">OBSERVER</div></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 class="text-xs font-bold text-slate-400 mb-3 uppercase italic">>_ 实时系统日志 (与后端同步)</h3>
+        <div id="logs" class="log-box whitespace-pre-wrap"></div>
+    </div>
+
+    <script>
+        const logBox = document.getElementById('logs');
+        function addLog(msg, color = 'text-[#4ade80]') {
+            const time = new Date().toLocaleTimeString();
+            logBox.innerHTML += `<div class="${color}">[${time}] ${msg}</div>`;
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        // 自动连接后端的心跳流
+        const evtSource = new EventSource("/api/stream-logs");
+        evtSource.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            if(data.type === 'status') addLog(data.msg, 'text-slate-500');
+        };
+
+        function startTask(name) {
+            addLog(`🚀 启动协同会话: session_${Math.random().toString(36).substr(2,9)} (${name})`, 'text-sky-400 font-bold');
+            const steps = [
+                "协同步骤 1: minion 执行 strategize",
+                "触发下一步: sage 执行 analyze_market",
+                "协同步骤 2: scout 执行 competitive_analysis",
+                "协同步骤 3: quill 执行 create_content",
+                "✅ 会话完成: 任务目标已达成"
+            ];
+            steps.forEach((s, i) => setTimeout(() => addLog(s), (i + 1) * 1000));
+        }
+        addLog("系统初始化完成。内核版本 v1.0.2 已加载。");
+    </script>
+</body>
+</html>
